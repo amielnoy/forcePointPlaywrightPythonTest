@@ -1,6 +1,8 @@
 # Sub_Page_button.py
+from pickle import FALSE
+
 import playwright
-from playwright.sync_api import Page
+from playwright.sync_api import Page,expect
 
 
 class SubPageButtons:
@@ -12,16 +14,18 @@ class SubPageButtons:
         return self.page.locator('.et_pb_button_'f'{index}')
 
     def does_button_exist(self, index: int) -> bool:
-        try:
-            if self.locate_button(index):
-                return True
-        except playwright._impl._api_types.ElementNotFound:
-            return False
+        current_button=self.locate_button(index)
+
+        if current_button.is_visible():
+          return True
+        else:
+          return False
 
     def count_buttons(self):
         count = 0
         while self.does_button_exist(count):
             count += 1
+            print(count)
         return count
 
     def interact_with_element(self):

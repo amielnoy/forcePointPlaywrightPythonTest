@@ -1,5 +1,3 @@
-# Sub_Page_button.py
-import playwright
 from playwright.sync_api import Page
 
 
@@ -9,13 +7,14 @@ class SubPageButtons:
         self.some_element = self.page.locator("#subpage1_element")
 
     def locate_button(self, index: int):
-        return self.page.locator('.et_pb_button_'f'{index}')
+        return self.page.locator(f'.et_pb_button_{index}')
 
     def does_button_exist(self, index: int) -> bool:
-        try:
-            if self.locate_button(index):
-                return True
-        except playwright._impl._api_types.ElementNotFound:
+        current_button = self.locate_button(index)
+
+        if current_button.is_visible():
+            return True
+        else:
             return False
 
     def count_buttons(self):
@@ -24,8 +23,3 @@ class SubPageButtons:
             count += 1
         return count
 
-    def interact_with_element(self):
-        self.some_element.click()
-
-    def get_element_text(self):
-        return self.some_element.text_content()

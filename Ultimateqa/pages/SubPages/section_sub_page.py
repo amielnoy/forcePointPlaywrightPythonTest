@@ -2,12 +2,12 @@ import sys
 import os
 from dotenv import load_dotenv
 from playwright.sync_api import Page
-from .sub_page_buttons import SubPageButtons
+from Ultimateqa.pages.SubPages.sub_page_buttons import SubPageButtons
 
 class SectionSubPage:
-    def __init__(self, page: Page, goto):
+    def setup(self, page: Page, goto):
         # Add the project path to sys.path
-        sys.path.append('/Users/amielpeled/PycharmProjects/ForcePoint/Ultimateqa')
+        sys.path.append('/')
 
         # Load environment variables
         load_dotenv()

@@ -7,8 +7,8 @@ from playwright.sync_api import Page,expect
 
 class SubPageButtons:
     def __init__(self, page: Page):
-        self.page = page
-        self.some_element = self.page.locator("#subpage1_element")
+        self.page=page
+        self.some_element = page.locator("#subpage1_element")
 
     def locate_button(self, index: int):
         return self.page.locator('.et_pb_button_'f'{index}')

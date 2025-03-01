@@ -7,10 +7,11 @@ from playwright.sync_api import Page
 class TestBase:
     @pytest.fixture(scope="function")
     def setup(self,page: Page):
-        # Add the project path to sys.path
-        load_dotenv()
         self.page = page
+        load_dotenv()
         self.base_url = os.getenv("BASE_URL")
+        yield
+
         # Load environment variables
 
         # Retrieve the base URL from environment variables

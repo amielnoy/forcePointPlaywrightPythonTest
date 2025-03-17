@@ -2,7 +2,7 @@ import sys
 import os
 from dotenv import load_dotenv
 from playwright.sync_api import Page
-from Ultimateqa.pages.SubPages.sub_page_buttons import SubPageButtons
+from sub_page_buttons import SubPageButtons
 
 class SectionSubPage:
     def setup(self, page: Page, goto):

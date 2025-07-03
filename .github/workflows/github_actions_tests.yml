@@ -34,7 +34,7 @@ jobs:
         python -m playwright install --with-deps
 
     - name: create enviornment file from circle ci.
-    - run:
+    - run: |
         set -x
         ENV_FILE=".env"
         echo "BASE_URL=${BASE_URL}" >> "$ENV_FILE"

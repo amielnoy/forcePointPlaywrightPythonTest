@@ -6,6 +6,8 @@ from request_sender import RequestSender
 from ride_distribute import DistributToCustomers
 from allocation_sender import AllocationSender
 
+from pathlib import Path
+
 
 class RideAllocationSystem:
     def __init__(self):
@@ -15,8 +17,14 @@ class RideAllocationSystem:
         self.ride_distribute = DistributToCustomers()
         self.send_allocation = AllocationSender()
 
+    def get_current_directory(self):
+        return Path.cwd()
     def process_ride_requests(self, agency: str, input_file: str, output_file: str):
         # Read requests from CSV
+        # current_directory = self.get_current_directory()
+        # print(f"Current Directory: {current_directory}")
+        # input_file =  str(current_directory) + '/' +  'csv_inputs/input.csv'
+
         requests = self.request.read_request_from_csv(input_file)
 
         # Aggregate by destination
@@ -34,7 +42,10 @@ class RideAllocationSystem:
 
 def main():
     system = RideAllocationSystem()
-    system.process_ride_requests("agency","input.csv", "output.csv")
+    current_directory = system.get_current_directory()
+    print(f"Current Directory: {current_directory}")
+    input_file = str(current_directory) + '/' + 'csv_inputs/input.csv'
+    system.process_ride_requests("agency",input_file, "output.csv")
 
 
 if __name__ == "__main__":

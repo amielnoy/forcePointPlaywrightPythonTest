@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      BASE_URL: https://your-base-url.com  # <-- Set your actual BASE_URL here
+      BASE_URL: https://ultimateqa.com/complicated-page  # <-- Set your actual BASE_URL here
 
     steps:
     - name: Checkout code
@@ -43,4 +43,4 @@ jobs:
     - name: Run tests with Pytest
       run: |
         source .venv/bin/activate
-        pytest Ultimateqa/tests
+        pytest Ultimateqa/tests -n auto

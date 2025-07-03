@@ -33,6 +33,14 @@ jobs:
         source .venv/bin/activate
         python -m playwright install --with-deps
 
+    - run:
+          name: create enviornment file from circle ci.
+          command: |
+            set -x
+            ENV_FILE=".env"
+            echo "BASE_URL=${BASE_URL}" >> "$ENV_FILE"
+            set +x    
+
     - name: Run tests with Pytest
       run: |
         source .venv/bin/activate

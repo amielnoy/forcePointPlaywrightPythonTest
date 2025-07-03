@@ -1,11 +1,11 @@
-playwright==1.52.0
+playwright
 py
 pyee
 pyparsing==3.0.6
 pytest
 pytest-base-url==1.4.2
 pytest-forked==1.4.0
-pytest-playwright==0.2.3
+pytest-playwright
 python-slugify==5.0.2
 pytest-html
 requests

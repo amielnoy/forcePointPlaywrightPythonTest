@@ -12,6 +12,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    env:
+      BASE_URL: https://your-base-url.com  # <-- Set your actual BASE_URL here
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -33,12 +36,9 @@ jobs:
         source .venv/bin/activate
         python -m playwright install chrome --with-deps
 
-    - name: create enviornment file from workflow
+    - name: Create .env file from workflow
       run: |
-        set -x
-        ENV_FILE=".env"
-        echo "BASE_URL=${BASE_URL}" >> "$ENV_FILE"
-        set +x
+        echo "BASE_URL=${BASE_URL}" > .env
 
     - name: Run tests with Pytest
       run: |

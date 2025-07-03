@@ -9,9 +9,10 @@ import sys
 sys.path.append('/Users/amielpeled/PycharmProjects/test-force-point/ForcePoint/Ultimateqa')
 
 from playwright.sync_api import Page
-from Ultimateqa.pages.sub_page_buttons import SubPageButtons
-from Ultimateqa.pages.sub_page_social_media import SubPageSocialMedia
-from Ultimateqa.pages.sub_page_forms import SubPageForms
+from Ultimateqa.pages.SubPages.sub_page_buttons import SubPageButtons
+from Ultimateqa.pages.SubPages.sub_page_buttons import SubPageButtons
+from Ultimateqa.pages.SubPages.sub_page_social_media import SubPageSocialMedia
+from Ultimateqa.pages.SubPages.sub_page_forms import SubPageForms
 import Ultimateqa.tests.consts as consts
 
 

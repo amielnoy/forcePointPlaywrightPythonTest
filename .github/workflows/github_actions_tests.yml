@@ -29,8 +29,9 @@ jobs:
 
     - name: Install Playwright Chrome
       run: |
-        npx playwright install chromium
         npm install @playwright/test
+        npx playwright install chromium
+
     - name: Run tests
       run: |
         source .venv/bin/activate

@@ -1,4 +1,5 @@
 playwright
+allure-pytest
 py
 pyee
 pyparsing==3.0.6

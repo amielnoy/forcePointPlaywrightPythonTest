@@ -42,7 +42,24 @@ jobs:
         echo "BASE_URL_FE=${BASE_URL_FE}" > .env
         echo "BASE_URL_API=${BASE_URL_API}" > .env
 
+    - name: Install Allure Commandline
+      uses: simple-elf/allure-commandline@v2
+      with:
+        version: 2.33.0
+        allure_dist: allure
+
     - name: Run tests(UI & API) with Pytest
       run: |
         source .venv/bin/activate
-        pytest Ultimateqa/tests -n auto api_tests/test_users.py -n auto
+        pytest Ultimateqa/tests -n auto api_tests/test_users.py -n auto --alluredir=allure-results
+    
+    - name: Generate Allure Report
+      run: |
+        npx allure generate allure-results --clean -o allure-report
+
+    - name: Deploy Allure Report to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+          github_token: ${{ secrets.GH_PAGES_ALLURE }}
+          publish_dir: ./allure-report
+    

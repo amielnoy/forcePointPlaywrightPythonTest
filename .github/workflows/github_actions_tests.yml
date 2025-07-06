@@ -42,11 +42,11 @@ jobs:
         echo "BASE_URL_FE=${BASE_URL_FE}" > .env
         echo "BASE_URL_API=${BASE_URL_API}" > .env
 
-    - name: Install Allure Commandline
-      uses: simple-elf/allure-commandline@v2
-      with:
-        version: 2.27.0
-        allure_dist: allure
+    - name: Install Allure CLI
+      run: |
+        sudo apt-add-repository ppa:qameta/allure -y
+        sudo apt-get update
+        sudo apt-get install allure -y
 
     - name: Run tests(UI & API) with Pytest
       run: |

@@ -16,10 +16,8 @@ from Ultimateqa.pages.SubPages.sub_page_forms import SubPageForms
 import Ultimateqa.tests.consts as consts
 
 
-def test_count_buttons(page: Page,base_url):
-    #load_dotenv()
-    #base_url = os.getenv("BASE_URL")
-    page.goto(base_url)
+def test_count_buttons(page: Page, base_url_fe):
+    page.goto(base_url_fe)
     sub_page_buttons = SubPageButtons(page)
 
     count_of_buttons = sub_page_buttons.count_buttons()
@@ -27,10 +25,10 @@ def test_count_buttons(page: Page,base_url):
         f"Found: {count_of_buttons} buttons, expected: {consts.NUN_OF_BUTTONS_TO_FIND}"
 
 
-def test_verify_href_link(page: Page, base_url):
+def test_verify_href_link(page: Page, base_url_fe):
     # load_dotenv()
     # base_url = os.getenv("BASE_URL")
-    page.goto(base_url)
+    page.goto(base_url_fe)
     sub_page_social_media = SubPageSocialMedia(page)
 
     facebook_buttons = sub_page_social_media.section.query_selector_all('a[title="Follow on Facebook"]')
@@ -44,10 +42,10 @@ def test_verify_href_link(page: Page, base_url):
     ('Haim Cohen', 'adam@gmail.com', 'I am Adam', None, 'Thanks for contacting us'),
     ('Asaf Levi', 'asaf@gmail.com', 'I am Asaf', '0', 'You entered the wrong number in captcha.'),
 ])
-def test_forms(page: Page, name, email, message, exercise_result, message_after_submit,base_url):
+def test_forms(page: Page, name, email, message, exercise_result, message_after_submit, base_url_fe):
     #load_dotenv()
     #base_url = os.getenv("BASE_URL")
-    page.goto(base_url)
+    page.goto(base_url_fe)
     sub_page_social_forms = SubPageForms(page)
 
     sub_page_social_forms.set_name(name)

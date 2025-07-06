@@ -40,7 +40,7 @@ jobs:
       run: |
         echo "BASE_URL=${BASE_URL}" > .env
 
-    - name: Run tests with Pytest
+    - name: Run tests(UI & API) with Pytest
       run: |
         source .venv/bin/activate
-        pytest Ultimateqa/tests -n auto
+        pytest Ultimateqa/tests -n auto api_tests/test_users.py -n auto

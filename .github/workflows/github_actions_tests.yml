@@ -13,7 +13,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      BASE_URL: https://ultimateqa.com/complicated-page  # <-- Set your actual BASE_URL here
+      BASE_URL_FE: https://ultimateqa.com/complicated-page  # <-- Set your actual BASE_URL here
+      BASE_URL_API: https://jsonplaceholder.typicode.com
 
     steps:
     - name: Checkout code
@@ -38,7 +39,8 @@ jobs:
 
     - name: Create .env file from workflow
       run: |
-        echo "BASE_URL=${BASE_URL}" > .env
+        echo "BASE_URL_FE=${BASE_URL_FE}" > .env
+        echo "BASE_URL_API=${BASE_URL_API}" > .env
 
     - name: Run tests(UI & API) with Pytest
       run: |

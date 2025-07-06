@@ -42,17 +42,11 @@ jobs:
         echo "BASE_URL_FE=${BASE_URL_FE}" > .env
         echo "BASE_URL_API=${BASE_URL_API}" > .env
 
-    - name: Install Allure CLI using Homebrew
+    - name: Install Allure CLI
       run: |
+          sudo apt-add-repository ppa:qameta/allure -y
           sudo apt-get update
-          sudo apt-get install -y curl git
-          git clone https://github.com/Homebrew/brew ~/.linuxbrew/Homebrew
-          mkdir ~/.linuxbrew/bin
-          ln -s ~/.linuxbrew/Homebrew/bin/brew ~/.linuxbrew/bin
-          eval "$(~/.linuxbrew/bin/brew shellenv)"
-          echo 'eval "$(/home/runner/.linuxbrew/bin/brew shellenv)"' >> $GITHUB_ENV
-          source $GITHUB_ENV
-          brew install allure
+          sudo apt-get install allure -y
 
     - name: Run tests(UI & API) with Pytest
       run: |

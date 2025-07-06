@@ -20,6 +20,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+          node-version: '22'
+
+    - name: Install Allure Commandline
+      run: npm install -g allure-commandline --save-dev
+
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
@@ -48,13 +56,9 @@ jobs:
         source .venv/bin/activate
         pytest Ultimateqa/tests -n auto api_tests/test_users.py -n auto --alluredir=allure-results
 
-    - name: Generate and publish Allure Report
-      uses: simple-elf/allure-report-action@master
-      with:
-          results-directory: allure-results
-          report-directory: allure-report
-          allure-endpoint: ""
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Generate Allure Report
+      run: |
+          npx allure generate allure-results --clean -o allure-report
 
     - name: Deploy Allure Report to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3

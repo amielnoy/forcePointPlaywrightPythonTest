@@ -42,21 +42,19 @@ jobs:
         echo "BASE_URL_FE=${BASE_URL_FE}" > .env
         echo "BASE_URL_API=${BASE_URL_API}" > .env
 
-    - name: Install Allure CLI
-      run: |
-          sudo apt-add-repository ppa:qameta/allure -y
-          sudo apt-get update
-          sudo apt-get install allure -y
 
     - name: Run tests(UI & API) with Pytest
       run: |
         source .venv/bin/activate
         pytest Ultimateqa/tests -n auto api_tests/test_users.py -n auto --alluredir=allure-results
-    
-    - name: Generate Allure Report
-      run: |
-        source $GITHUB_ENV
-        allure generate allure-results -o allure-report --clean
+
+    - name: Generate and publish Allure Report
+      uses: simple-elf/allure-report-action@master
+      with:
+          results-directory: allure-results
+          report-directory: allure-report
+          allure-endpoint: ""
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Deploy Allure Report to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3

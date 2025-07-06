@@ -45,7 +45,7 @@ jobs:
     - name: Install Allure Commandline
       uses: simple-elf/allure-commandline@v2
       with:
-        version: 2.33.0
+        version: 2.27.0
         allure_dist: allure
 
     - name: Run tests(UI & API) with Pytest

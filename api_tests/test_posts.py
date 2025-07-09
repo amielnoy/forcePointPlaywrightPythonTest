@@ -11,7 +11,7 @@ def test_get_post_number1(api):
     response = api.get("posts/1")
     assert response.status_code == ApiHttpConstants.OK
     data = response.json()
-    assert data['userId'] == 1,"error in user id,expected 1"
+    assert data['userId'] == 2,"error in user id,expected 1"
     assert data['id'] == 1,"error is user id,expected 1"
     assert data['title'] == "sunt aut facere repellat provident occaecati excepturi optio reprehenderit","eror in title"
     assert data['body'] == "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto","erorr in body"

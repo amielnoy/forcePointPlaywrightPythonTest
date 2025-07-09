@@ -1,4 +1,4 @@
-from globals import ApiHttpConstants
+from api_tests.globals import ApiHttpConstants
 
 
 def test_get_posts_count(api):

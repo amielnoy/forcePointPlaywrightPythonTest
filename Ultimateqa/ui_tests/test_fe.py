@@ -13,7 +13,7 @@ from Ultimateqa.pages.SubPages.sub_page_buttons import SubPageButtons
 from Ultimateqa.pages.SubPages.sub_page_buttons import SubPageButtons
 from Ultimateqa.pages.SubPages.sub_page_social_media import SubPageSocialMedia
 from Ultimateqa.pages.SubPages.sub_page_forms import SubPageForms
-import Ultimateqa.tests.consts as consts
+import Ultimateqa.ui_tests.consts as consts
 
 
 def test_count_buttons(page: Page, base_url_fe):

@@ -77,4 +77,9 @@ jobs:
           publish_branch: gh_pages
           publish_dir: ./allure-report
 
+    - name: Output report link
+      if: always()
+      run: |
+            echo "### ✅ [View Allure Report](https://amielnoy.github.io/forcePointPlaywrightPythonTest)" >> $GITHUB_STEP_SUMMARY    
+
     

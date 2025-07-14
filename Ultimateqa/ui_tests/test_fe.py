@@ -1,15 +1,5 @@
-from dotenv import load_dotenv
-import os
 import pytest
-
-import sys
-
-#from conftest import base_url
-
-sys.path.append('/Users/amielpeled/PycharmProjects/test-force-point/ForcePoint/Ultimateqa')
-
 from playwright.sync_api import Page
-from Ultimateqa.pages.SubPages.sub_page_buttons import SubPageButtons
 from Ultimateqa.pages.SubPages.sub_page_buttons import SubPageButtons
 from Ultimateqa.pages.SubPages.sub_page_social_media import SubPageSocialMedia
 from Ultimateqa.pages.SubPages.sub_page_forms import SubPageForms
@@ -21,8 +11,21 @@ def test_count_buttons(page: Page, base_url_fe):
     sub_page_buttons = SubPageButtons(page)
 
     count_of_buttons = sub_page_buttons.count_buttons()
+
     assert count_of_buttons == consts.NUN_OF_BUTTONS_TO_FIND, \
         f"Found: {count_of_buttons} buttons, expected: {consts.NUN_OF_BUTTONS_TO_FIND}"
+
+    count_all_buttons_using_css = sub_page_buttons.all_buttons.count()
+    assert count_all_buttons_using_css == consts.NUN_OF_BUTTONS_TO_FIND, \
+        f"Found: {count_of_buttons} buttons, expected: {consts.NUN_OF_BUTTONS_TO_FIND}"
+
+def test_count_buttons_using_css(page: Page, base_url_fe):
+    page.goto(base_url_fe)
+    sub_page_buttons = SubPageButtons(page)
+
+    count_all_buttons_using_css = sub_page_buttons.all_buttons.count()
+    assert count_all_buttons_using_css == consts.NUN_OF_BUTTONS_TO_FIND, \
+        f"Found: {count_all_buttons_using_css} buttons, expected: {consts.NUN_OF_BUTTONS_TO_FIND}"
 
 
 def test_verify_href_link(page: Page, base_url_fe):

@@ -5,6 +5,7 @@ class SubPageButtons:
     def __init__(self, page: Page):
         self.page = page
         self.some_element = self.page.locator("#subpage1_element")
+        self.all_buttons= self.page.locator("[class^='et_pb_button_']")
 
     def locate_button(self, index: int):
         return self.page.locator(f'.et_pb_button_{index}')
@@ -22,4 +23,6 @@ class SubPageButtons:
         while self.does_button_exist(count):
             count += 1
         return count
+    def count_buttons_by_class(self):
+        return self.all_buttons.count()
 

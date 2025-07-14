@@ -51,13 +51,14 @@ jobs:
         echo "BASE_URL_FE=${BASE_URL_FE}" > .env
         echo "BASE_URL_API=${BASE_URL_API}" > .env
 
-    - name: Download previous Allure report
+    - name: Download previous Allure history
       run: |
         git config --global user.email "github-actions@users.noreply.github.com"
         git config --global user.name "GitHub Actions"
-        git clone --depth=1 --branch gh-pages https://github.com/${{ github.repository }} gh-pages || exit 0
+        git clone --depth=1 --branch gh_pages https://github.com/${{ github.repository }} gh-pages || echo "No previous gh-pages"
         mkdir -p allure-results/history
-        cp -R gh-pages/history allure-results/ || echo "No previous history"
+        cp -r gh-pages/history allure-results/ || echo "No history to copy"
+    
 
     - name: Run tests(UI & API) with Pytest
       run: |

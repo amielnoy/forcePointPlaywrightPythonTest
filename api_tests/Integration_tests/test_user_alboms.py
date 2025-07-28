@@ -1,3 +1,8 @@
+
+from fields.extras import ValidationError
+from schema import Schema
+from marshmallow import Schema, fields, ValidationError
+
 from api_tests.globals import ApiHttpConstants
 
 
@@ -32,3 +37,24 @@ def test_user_albums_schema(api):
         assert isinstance(album["id"], int), f"id is not int: {album['id']}"
         assert isinstance(album["title"], str), f"title is not str: {album['title']}"
         assert isinstance(album["userId"], int), f"userId is not int: {album['userId']}"
+
+class AlbumSchema(Schema):
+    id = fields.Int(required=True)
+    title = fields.Str(required=True)
+    userId = fields.Int(required=True)
+
+def test_user_albums_schema_with_marshmellow(api):
+    """
+    Test that the user albums API returns data matching the expected schema.
+    """
+    response = api.get("/albums")
+    assert response.status_code == 200
+    data = response.json()
+    assert isinstance(data, list), "Response should be a list of albums"
+
+    schema = AlbumSchema()
+    for album in data:
+        try:
+            schema.load(album)
+        except ValidationError as err:
+            assert False, f"Schema validation failed for album: {album}\nErrors: {err.messages}"

@@ -1,0 +1,9 @@
+{
+    "playwright.reuseBrowser": true,
+    "python.pythonPath": "ForcePoint/venv/bin/python",
+  "python.testing.pytestEnabled": true,
+  "python.testing.pytestArgs": [
+    "Ultimateqa/ui_tests",
+    "api_tests",
+  ]
+}

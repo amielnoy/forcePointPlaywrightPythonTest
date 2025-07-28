@@ -17,3 +17,10 @@ def base_url_fe():
 def base_url_api():
     load_dotenv()
     APIClient.BASE_URL_API = os.getenv('BASE_URL_API')
+    
+@pytest.fixture(scope="session")
+def browser_type_launch_args():
+    return {
+        "headless": False,
+        "slow_mo": 250  # מאט את הפעולות כדי שתוכל לראות מה קורה
+    }

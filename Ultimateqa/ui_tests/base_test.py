@@ -1,19 +1,14 @@
-import sys
-import os
 import pytest
-from dotenv import load_dotenv
-from playwright.sync_api import Page
+from Ultimateqa.pages.SubPages.sub_page_buttons import SubPageButtons
+from Ultimateqa.pages.SubPages.sub_page_social_media import SubPageSocialMedia
+from Ultimateqa.pages.SubPages.sub_page_forms import SubPageForms
 
-class TestBase:
-    @pytest.fixture(scope="function")
-    def setup(self,page: Page):
+class BaseTest:
+    @pytest.fixture(autouse=True)
+    def setup(self, page, base_url_fe):
         self.page = page
-        load_dotenv()
-        self.base_url = os.getenv("BASE_URL")
-        yield
-
-        # Load environment variables
-
-        # Retrieve the base URL from environment variables
-        
-        # Teardown code
+        self.base_url_fe = base_url_fe
+        self.sub_page_buttons = SubPageButtons(self.page)
+        self.sub_page_social_media = SubPageSocialMedia(self.page)
+        self.sub_page_forms = SubPageForms(self.page)
+        self.page.goto(self.base_url_fe)

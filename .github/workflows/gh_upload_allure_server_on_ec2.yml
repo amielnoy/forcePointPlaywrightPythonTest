@@ -73,28 +73,11 @@ jobs:
     
     
 
-    - name: Zip Allure results
-      if: always()
-      run: zip -r allure-results.zip allure-results
-
-    - name: Upload Allure results to Allure Server on EC2
-      if: always()
-      run: |
-              curl -X POST "http://3.93.58.184:8080/allure-docker-service/projects/my-project/results" \
-                -H "accept: application/json" \
-                -H "Authorization: Bearer ${{ secrets.ALLURE_TOKEN }}" \
-                -H "Content-Type: multipart/form-data" \
-                -F "results=@allure-results.zip;type=application/zip"
-
-    - name: Trigger Allure report generation
-      if: always()
-      run: |
-              curl -X GET "http://3.93.58.184:8080/allure-docker-service/projects/my-project/report" \
-                -H "Authorization: Bearer ${{ secrets.ALLURE_TOKEN }}"
-
-    - name: Output report link
-      if: always()
-      run: |
-              echo "### ✅ [View Allure Report](http://3.93.58.184:8080/projects/my-project/latest/index.html)" >> $GITHUB_STEP_SUMMARY
-
+    - name: Send Results and Generate Allure Report
+      uses: Xotabu4/send-to-allure-server-action@1
+      if: ${{ always() }}
+      with:
+          allure-server-url: 'http://3.93.58.184:8080'
+          project-id: 'my-project'
+          results-path: 'allure-results'
     
